@@ -17,8 +17,6 @@ export default function SignUpButton(props) {
           props.setNull('birthday');
         else if(!props.phoneNumber)
           props.setNull('phoneNumber');
-        else if(!props.isDoctor)
-          props.setNull('isDoctor');
         else {
           props.setIsLoading(true);
           const userInfo = {
@@ -31,16 +29,13 @@ export default function SignUpButton(props) {
             axios.post(`http://${serverIP}:5001/user/signup`, userInfo)
               .then(res => {
                  console.log(res);
-                //  localStorage.setItem("did_address", res.data.did.address);
-                //  localStorage.setItem("did", res.data.did.did);
+                 localStorage.setItem("did_address", res.data.did.address);
+                 localStorage.setItem("did", res.data.did.did);
                  localStorage.setItem("jwt", res.data.jwt);   // jwt 로컬스토리지에 저장
                  sessionStorage.setItem("login", true);
                  props.setIsLoading(false);
                  navigate('/');
-              })
-
-          
-
+              }).catch(err => console.log(err));
         }
     }
 

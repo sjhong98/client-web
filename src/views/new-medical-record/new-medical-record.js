@@ -28,10 +28,16 @@ export default function NewMedicalRecord() {
     const [name, setName] = useState("")
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const [doctorDid, setDoctorDid] = useState("");
+    const [patientDid, setPatientDid] = useState("");
+
+    
 
     useEffect(() => {
         if(new URL(document.location.toString()).searchParams.get("patient"))
             setName(new URL(document.location.toString()).searchParams.get("patient"));
+        
+        setDoctorDid(localStorage.getItem("did"));
     }, []);
 
     useEffect(() => {
@@ -78,21 +84,19 @@ export default function NewMedicalRecord() {
         // jwt와 did는 유저 회원가입시 또는 진료내용이 업데이트 될 떄마다, 서버에서 프론트로 던져줄예정
         // 이제 그걸 모바일에서 홀드하고 있어야함 // 그래서 현재는 임시로 지정해줄것임
 
-        const did=localStorage.getItem("did");
-        const patientDid = localStorage.getItem("patientDid");
-
         // 의사 jwt -> local에서.
         // 환자 jwt -> qr 코드에서.
 
         const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
-        axios.post(`http://${serverIP}:5001/user/new-record`, {recordData, did})
+        console.log("DID ::: ", doctorDid, patientDid);
+
+        axios.post(`http://${serverIP}:5001/user/new-record`, {recordData, doctorDid, patientDid})
             .then(res => {
                 isLoading(false);
                 console.log("vcJwt: ", res.data.updatedVcJwt)
                 localStorage.setItem("jwt", res.data.updatedVcJwt);
                 navigate(`/patient-medical-records?patient=${name}`);
-                // 이게 도착할때까지 "블록체인과 연결중입니다" 로딩창 팝업 띄워놓기 // 블록체인 속도 때문
             })
     }
 
