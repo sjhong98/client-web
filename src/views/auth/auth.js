@@ -35,9 +35,8 @@ export default function Auth() {
                 .post(`http://${serverIP}:5001/user/login`,   // token 주고 jwt 받는 부분
                         {token: tokenObject})
                 .then(res => {
-                    console.log("?");
                     if(!res.data.dbData){ // 신규가입일때
-                        console.log("카카오 계정 정보: ", res.data.userInfo);
+                        console.log("신규가입: ", res.data.userInfo);
                         dispatch(setEmail(res.data.userInfo.email));
                         sessionStorage.setItem("isDoctor", res.data.userInfo.isDoctor); // 확인필요
                         sessionStorage.setItem("login", true);
@@ -46,13 +45,14 @@ export default function Auth() {
                         navigate('/signup');
                         
                     } else {              // 기존회원일때
-                        console.log("DB 정보: ", res.data.dbData);
+                        console.log("기존회원: ", res.data.dbData);
                         dispatch(setEmail(res.data.dbData.email));
                         sessionStorage.setItem("login", true);
                         sessionStorage.setItem("isDoctor", res.data.dbData.isDoctor);
                         sessionStorage.setItem("login", true);
                         sessionStorage.setItem("name", res.data.dbData.name);
                         sessionStorage.setItem("birthday", res.data.dbData.birthday);
+                        localStorage.setItem("did", res.data.dbData.did);
                         navigate('/');
                     }
                 })
