@@ -32,14 +32,10 @@ export default function Auth() {
             console.log(tokenObject);
 
             await axios
-                .get("https://api.dmrs.space:5001/user/test")
-                .then(res => console.log(res))
-                .catch(err => console.log(err));
-
-            await axios
                 .post(`http://${serverIP}:5001/user/login`,   // token 주고 jwt 받는 부분
                         {token: tokenObject})
                 .then(res => {
+                    console.log("?");
                     if(!res.data.dbData){ // 신규가입일때
                         console.log("카카오 계정 정보: ", res.data.userInfo);
                         dispatch(setEmail(res.data.userInfo.email));
