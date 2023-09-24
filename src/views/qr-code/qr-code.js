@@ -19,6 +19,8 @@ export default function QrCode() {
         setInterval(() => {
             setSec(sec => sec-1);
         }, 1000);
+
+        console.log("jwt", vcJwt);
     }, [])
 
     return(

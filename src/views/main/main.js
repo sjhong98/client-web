@@ -29,6 +29,10 @@ function QrCard() {
 export default function Main() {
     const navigate = useNavigate();
     const login = sessionStorage.getItem("login");
+
+    useEffect(() => {
+        sessionStorage.setItem("isDoctor", true);
+    }, [])
     
     return(
         <div className='root'>

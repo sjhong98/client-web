@@ -48,7 +48,7 @@ export default function Auth() {
                         console.log("기존회원: ", res.data.dbData);
                         dispatch(setEmail(res.data.dbData.email));
                         sessionStorage.setItem("login", true);
-                        sessionStorage.setItem("isDoctor", res.data.dbData.isDoctor);
+                        // sessionStorage.setItem("isDoctor", res.data.dbData.isDoctor);
                         sessionStorage.setItem("login", true);
                         sessionStorage.setItem("name", res.data.dbData.name);
                         sessionStorage.setItem("birthday", res.data.dbData.birthday);

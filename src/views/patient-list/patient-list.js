@@ -16,8 +16,9 @@ export default function PatientList() {
     const [patientList, setPatientList] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [jwt, setJwt] = useState("");
 
-    const jwt = process.env.REACT_APP_JWT;
+    // const jwt = process.env.REACT_APP_JWT;
     const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
     const handleMouseOver = (index => {
@@ -32,9 +33,16 @@ export default function PatientList() {
         if(!sessionStorage.getItem("login"))
             navigate("/login");
 
+        setJwt(localStorage.getItem("jwt"));
+        console.log("test:", localStorage.getItem("jwt"))
+    }, []);
+
+    useEffect(() => {
+        console.log("doctor jwt : ", jwt);
+
         axios.post(`http://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
             { doctorJwt: jwt }
-            )    // 의사 jwt (일단 하드코딩)
+            )   
             .then((res) => {
                 console.log(res);
                 setPatientList(res.data);
@@ -42,7 +50,7 @@ export default function PatientList() {
             .catch((err) => {
                 console.log(err);
             })
-    }, [])
+    }, [jwt]);
 
 
     return(

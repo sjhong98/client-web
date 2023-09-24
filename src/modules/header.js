@@ -5,15 +5,16 @@ export default function Header() {
     const navigate = useNavigate();
     const [menu, setMenu] = useState([]);
     const isDoctor = sessionStorage.getItem("isDoctor");
+    // const isDoctor = true;  // test용
 
     useEffect(() => {
-        if(isDoctor)
+        if(isDoctor)    // 의사용 메뉴구성
             setMenu([
-                {title:'QR코드 확인', route:'qr-code-scan'}, 
+                {title:'QR코드 확인', route:'qr-code-scan'},    // 핸드폰 연동되야 함
                 {title:'환자 진료기록', route:'patient-list'}, 
                 {title:'의사 인증', route:'doctor-auth'}
             ]);
-        else    
+        else       // 환자용 메뉴구성
             setMenu([
                 {title:'QR코드', route:'qr-code'},
                 {title:'나의 진료기록', route:'medical-records'}

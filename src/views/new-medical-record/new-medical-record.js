@@ -30,7 +30,6 @@ export default function NewMedicalRecord() {
     const navigate = useNavigate();
     const [doctorDid, setDoctorDid] = useState("");
     const [patientDid, setPatientDid] = useState("");
-
     
 
     useEffect(() => {
@@ -90,11 +89,11 @@ export default function NewMedicalRecord() {
 
         axios.post(`http://${serverIP}:5001/user/new-record`, {recordData, doctorDid, patientDid})
             .then(res => {
-                isLoading(false);
-                console.log("vcJwt: ", res.data.updatedVcJwt)
+                setIsLoading(false);
+                console.log(res);
                 localStorage.setItem("jwt", res.data.updatedVcJwt);
-                navigate(`/patient-medical-records?patient=${name}`);
-            })
+                // navigate(`/patient-medical-records?patient=${name}`);
+            }).catch(err => console.log(err))
     }
 
     return (
