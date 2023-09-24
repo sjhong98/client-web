@@ -91,8 +91,8 @@ export default function NewMedicalRecord() {
             .then(res => {
                 setIsLoading(false);
                 console.log(res);
-                localStorage.setItem("jwt", res.data.updatedVcJwt);
-                // navigate(`/patient-medical-records?patient=${name}`);
+                // localStorage.setItem("jwt", res.data.updatedVcJwt);
+                navigate(`/patient-medical-records?patient=${name}`);
             }).catch(err => console.log(err))
     }
 

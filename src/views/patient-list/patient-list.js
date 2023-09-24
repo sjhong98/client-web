@@ -39,17 +39,20 @@ export default function PatientList() {
 
     useEffect(() => {
         console.log("doctor jwt : ", jwt);
+        if(jwt != null)
+        {
+            axios.post(`http://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
+                { doctorJwt: jwt }
+                )   
+                .then((res) => {
+                    console.log(res);
+                    setPatientList(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
 
-        axios.post(`http://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
-            { doctorJwt: jwt }
-            )   
-            .then((res) => {
-                console.log(res);
-                setPatientList(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
     }, [jwt]);
 
 
