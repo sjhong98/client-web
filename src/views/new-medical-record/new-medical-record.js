@@ -59,7 +59,7 @@ export default function NewMedicalRecord() {
         _date = "";
     }, [dateOfVisit]);
 
-    const handleClick = () => {
+    const handleClick = async () => {
         const recordData = {
             hospital: hospital,
             doctor: doctor,
@@ -87,7 +87,7 @@ export default function NewMedicalRecord() {
 
         const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
-        axios.post(`http://${serverIP}:5001/user/new-record`, {recordData, doctorDid, patientDid})
+        await axios.post(`http://${serverIP}:5001/user/new-record`, {recordData, doctorDid, patientDid})
             .then(res => {
                 setIsLoading(false);
                 console.log(res);
