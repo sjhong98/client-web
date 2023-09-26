@@ -37,7 +37,7 @@ export default function PatientList() {
             setJwt(jwtFromStorage);
             console.log("test:", jwtFromStorage);
         }
-    }, []);
+    }, [navigate]);
 
     useEffect(() => {
       if (jwt) {
@@ -57,7 +57,7 @@ export default function PatientList() {
                 })
         }
      } 
-    }, [jwt]);
+    }, [jwt, navigate, serverIP]);
 
 
     return(

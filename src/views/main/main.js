@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import "./main.css";
@@ -46,7 +46,8 @@ export default function Main() {
                         <p className="no-margin" style={{fontSize:'50px'}}>소셜로그인 test</p>
                         <img className='kakao-login pointer' 
                             src={kakaoLogin} 
-                            onClick={()=>{navigate("/login")}} />
+                            onClick={()=>{navigate("/login")}}
+                            alt={'...'} />
                     </div>
                 }
             </div>

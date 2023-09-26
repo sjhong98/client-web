@@ -29,6 +29,7 @@ export default function NewMedicalRecord() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [doctorDid, setDoctorDid] = useState("");
+    // eslint-disable-next-line
     const [patientDid, setPatientDid] = useState("");
     
 
