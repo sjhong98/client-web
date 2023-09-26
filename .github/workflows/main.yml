@@ -30,4 +30,4 @@ jobs:
 
       - name: firebase deploy
         working-directory: ./
-        run: firebase deplo
+        run: firebase deploy
