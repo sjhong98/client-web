@@ -43,7 +43,7 @@ export default function Main() {
                     <QrCard />
                     :
                     <div className="login-box column-center">
-                        <p className="no-margin" style={{fontSize:'50px'}}>소셜로그인</p>
+                        <p className="no-margin" style={{fontSize:'50px'}}>소셜로그인 test</p>
                         <img className='kakao-login pointer' 
                             src={kakaoLogin} 
                             onClick={()=>{navigate("/login")}} />
