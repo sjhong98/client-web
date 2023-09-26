@@ -2,7 +2,6 @@
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import './patient-medical-record-view.css';
-import {useNavigate} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function PatientMedicalRecordView() {
