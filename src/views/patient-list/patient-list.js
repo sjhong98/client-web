@@ -30,14 +30,18 @@ export default function PatientList() {
     })
 
     useEffect(() => {
-        if(!sessionStorage.getItem("login"))
-            navigate("/login");
+        if (!sessionStorage.getItem("login")) navigate("/login");
 
-        setJwt(localStorage.getItem("jwt"));
-        console.log("test:", localStorage.getItem("jwt"))
+        const jwtFromStorage = localStorage.getItem("jwt");
+        if (jwtFromStorage) {
+            setJwt(jwtFromStorage);
+            console.log("test:", jwtFromStorage);
+        }
     }, []);
 
     useEffect(() => {
+      if (jwt) {
+
         console.log("doctor jwt : ", jwt);
         if(jwt != null)
         {
@@ -52,7 +56,7 @@ export default function PatientList() {
                     console.log(err);
                 })
         }
-
+     } 
     }, [jwt]);
 
 
