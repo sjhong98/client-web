@@ -2,7 +2,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 export default function SignUpButton(props) {
     const navigate = useNavigate();
