@@ -1,13 +1,11 @@
-import React, { useState, useEffect} from 'react';
+// import React, { useState, useEffect} from 'react';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import './patient-medical-record-view.css';
-import Button from '@mui/material/Button';
 import {useNavigate} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function PatientMedicalRecordView() {
-    const navigate = useNavigate();
     const name = useSelector(state => state.patientName);
     console.log(name);
 

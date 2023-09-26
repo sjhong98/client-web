@@ -25,6 +25,7 @@ export default function DoctorAuth() {
             }
         }
         fetchData();
+    // eslint-disable-next-line
     }, []);
 
     return(

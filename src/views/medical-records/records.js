@@ -34,6 +34,7 @@ export default function Records() {
         if(!sessionStorage.getItem("login"))
             navigate("/login");
         getDb();
+        // eslint-disable-next-line
     }, [])
 
     const handleMouseOver = (index => {

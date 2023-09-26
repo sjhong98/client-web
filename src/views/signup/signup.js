@@ -6,16 +6,18 @@ import Checkbox from '@mui/material/Checkbox';
 import './signup.css';
 import InputField from '../../modules/inputField';
 import SignUpButton from './signupButton';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 
 export default function Main() {
     const [name, setName] = useState("");
+    // eslint-disable-next-line
     const [domain, setDomain] = useState("");
     const [birthday, setBirthday] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [isDoctor, setIsDoctor] = useState(false);
+    // eslint-disable-next-line
     const [write, setWrite] = useState(false);
     const [Null, setNull] = useState("");
     const [isLoading, setIsLoading] = useState(false);

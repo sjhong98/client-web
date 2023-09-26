@@ -19,8 +19,8 @@ export default function Header() {
                 {title:'QR코드', route:'qr-code'},
                 {title:'나의 진료기록', route:'medical-records'}
             ]);
-        
-    }, [])
+        // eslint-disable-next-line
+    }, []);
 
     
     const login = sessionStorage.getItem('login');

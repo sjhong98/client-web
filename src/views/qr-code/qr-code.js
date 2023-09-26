@@ -21,7 +21,7 @@ export default function QrCode() {
         }, 1000);
 
         console.log("jwt", vcJwt);
-    }, [])
+    }, [navigate, vcJwt])
 
     return(
         <div className='root'>

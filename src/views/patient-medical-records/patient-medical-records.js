@@ -2,7 +2,6 @@ import React, { useState, useEffect} from 'react';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import {useNavigate} from 'react-router-dom';
-import InputField from '../../modules/inputField.js';
 import NewRecordButton from './newRecordButton.js';
 import axios from 'axios';
 import "./patient-medical-records.css";
@@ -29,7 +28,7 @@ export default function PatientMedicalRecords() {
             .catch((err) => {
                 console.log(err);
             })
-    }, [patientDid]);
+    }, [patientDid, serverIP]);
 
     const handleMouseOver = (index => {
         setActiveIndex(index);

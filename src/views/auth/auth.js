@@ -1,8 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setIsLoading } from '../../redux/actions.js';
+import { useEffect, } from 'react';
+import { useDispatch } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import './auth.css';
@@ -60,7 +59,7 @@ export default function Auth() {
         }
 
         fetchData();
-
+    // eslint-disable-next-line
     }, []);
 
     return (

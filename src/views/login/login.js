@@ -29,7 +29,12 @@ export default function Login() {
             <div className="login-body row-center">
                 <div className="login-box column-center">
                     <p className="no-margin" style={{fontSize:'50px'}}>소셜로그인</p>
-                    <img className='kakao-login pointer' src={kakaoLogin} onClick={handleLogin} />
+                    <img 
+                        className='kakao-login pointer' 
+                        src={kakaoLogin} 
+                        onClick={handleLogin} 
+                        alt={"..."}
+                        />
                 </div>
             </div>
         </div>
