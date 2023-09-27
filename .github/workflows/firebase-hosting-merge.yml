@@ -6,6 +6,11 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - master
+env:
+  REACT_APP_JWT: '${{ secrets.REACT_APP_JWT }}'
+  REACT_APP_KAKAO_LOGIN: '${{ secrets.REACT_APP_KAKAO_LOGIN }}'
+  REACT_APP_SERVER_IP_ADDRESS: '${{ secrets.REACT_APP_SERVER_IP_ADDRESS }}'
+  
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
