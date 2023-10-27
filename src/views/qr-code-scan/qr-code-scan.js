@@ -7,6 +7,8 @@ export default function QrCodeScan() {
         <div className='root'>
             <Header />
             <div className='body'>
+                <h1>QR 스캔</h1>
+                <p>모바일로 환자의 QR코드를 스캔해주세요.</p>
                 
             </div>
             <Footer />
