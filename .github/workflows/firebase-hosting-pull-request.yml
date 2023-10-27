@@ -3,6 +3,10 @@
 
 name: Deploy to Firebase Hosting on PR
 'on': pull_request
+env:
+  REACT_APP_JWT: '${{ secrets.REACT_APP_JWT }}'
+  REACT_APP_KAKAO_LOGIN: '${{ secrets.REACT_APP_KAKAO_LOGIN }}'
+  REACT_APP_SERVER_IP_ADDRESS: '${{ secrets.REACT_APP_SERVER_IP_ADDRESS }}'
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
