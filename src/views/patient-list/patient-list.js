@@ -45,7 +45,7 @@ export default function PatientList() {
         console.log("doctor jwt : ", jwt);
         if(jwt != null)
         {
-            axios.post(`http://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
+            axios.post(`https://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
                 { doctorJwt: jwt }
                 )   
                 .then((res) => {

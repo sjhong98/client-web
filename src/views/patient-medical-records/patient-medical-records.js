@@ -19,7 +19,7 @@ export default function PatientMedicalRecords() {
 
 
     useEffect(() => {
-        axios.post(`http://${serverIP}:5001/doctor/get-all-patient-records`, 
+        axios.post(`https://${serverIP}:5001/doctor/get-all-patient-records`, 
             {doctorJwt: localStorage.getItem("jwt"), patientDid: patientDid}
             )
             .then((res) => {

@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 
 export default function QrCodeScan() {
     const [jwt, setJwt] = useState("");
-    const socket = io.connect('http://localhost:3001', {
+    const socket = io.connect('https://localhost:3001', {
         cors: { origin: '*' },
         reconnection: true, // 자동 재연결 활성화
         reconnectionAttempts: 10, // 최대 재연결 시도 횟수
@@ -14,6 +14,7 @@ export default function QrCodeScan() {
 
     useEffect(() => {
         socket.emit('login', {email: "test", media: "web"});
+        // eslint-disable-next-line
     }, [])
 
     socket.on('qr-stow', (data) => {
