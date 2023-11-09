@@ -4,6 +4,8 @@ import Footer from '../../modules/footer.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// 나의 진료내역
+
 function Empty() {
     return (
         <div className='row-center'>

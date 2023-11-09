@@ -8,7 +8,6 @@ import SearchButton from './searchButton.js';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setPatientDid, setPatientName } from '../../redux/actions';
-import NewRecordButton from './newRecordButton.js';
 
 export default function PatientList() {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -67,7 +66,6 @@ export default function PatientList() {
                 <div className='toolbar'>
                     <InputField type='text' setData={setKeyword} label='검색' width='10vw' />
                     <SearchButton keyword={keyword} patientList={patientList} setPatientList={setPatientList} />
-                    <NewRecordButton />
                 </div>
                 <p style={{fontSize:'30px'}}>환자 목록</p>
                 <div className='records-box'>

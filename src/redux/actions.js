@@ -46,3 +46,10 @@ export const setPatientRecord = (item) => {
         payload: item,
     }
 }
+
+export const setPatientJwt = (item) => {
+    return {
+        type: 'SET_PATIENT_JWT',
+        payload: item,
+    }
+}

@@ -9,7 +9,7 @@ export default function Header() {
 
     useEffect(() => {
         setMenu([
-            {title:'QR코드 확인', route:'qr-code-scan'},    // 핸드폰 연동되야 함
+            {title:'진료', route:'qr-code-scan'},    // 핸드폰 연동되야 함
             {title:'환자 진료기록', route:'patient-list'}, 
             {title:'의사 인증', route:'doctor-auth'}
         ]);

@@ -7,6 +7,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useSelector } from 'react-redux';
 
 export default function NewMedicalRecord() {
     const [hospital, setHospital] = useState("");
@@ -25,36 +26,34 @@ export default function NewMedicalRecord() {
     const [medicationPrescribed, setMedicationPrescribed] = useState("");
     const [followUp, setFollowUp] = useState("");
     const [additionalComments, setAdditionalComments] = useState("");
-    const [name, setName] = useState("")
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [doctorDid, setDoctorDid] = useState("");
     // eslint-disable-next-line
-    const [patientDid, setPatientDid] = useState("");
-    
+    const [name, setName] = useState(useSelector(state => state.patientName));
+    const [patientJwt, setPatientJwt] = useState(useSelector(state => state.patientJwt));
 
-    useEffect(() => {
-        if(new URL(document.location.toString()).searchParams.get("patient"))
-            setName(new URL(document.location.toString()).searchParams.get("patient"));
-        
+    useEffect(() => {  
         setDoctorDid(localStorage.getItem("did"));
     }, []);
 
     useEffect(() => {
         const temp = dateOfVisit.toString().split(" ");
         let month = temp[1];
-        if(month === "Jan") month = "1";
-        else if(month === "Feb") month = "2";
-        else if(month === "Mar") month = "3";
-        else if(month === "Apr") month = "4";
-        else if(month === "May") month = "5";
-        else if(month === "Jun") month = "6";
-        else if(month === "Jul") month = "7";
-        else if(month === "Aug") month = "8";
-        else if(month === "Sep") month = "9";
-        else if(month === "Oct") month = "10";
-        else if(month === "Nov") month = "11";
-        else if(month === "Dec") month = "12";
+        switch(month) {
+            case "Jan": month="1"; break;
+            case "Feb": month="2"; break;
+            case "Mar": month="3"; break;
+            case "Apr": month="4"; break;
+            case "May": month="5"; break;
+            case "Jun": month="6"; break;
+            case "Jul": month="7"; break;
+            case "Aug": month="8"; break;
+            case "Sep": month="9"; break;
+            case "Oct": month="10"; break;
+            case "Nov": month="11"; break;
+            case "Dec": month="12"; break;
+        }
         let _date = temp[3]+"/"+month+"/"+temp[2];
         setDate(_date);
         _date = "";
@@ -88,7 +87,7 @@ export default function NewMedicalRecord() {
 
         const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
-        await axios.post(`https://${serverIP}:5001/user/new-record`, {recordData, doctorDid, patientDid})
+        await axios.post(`https://${serverIP}:5001/user/new-record`, {recordData, doctorDid, patientJwt})
             .then(res => {
                 setIsLoading(false);
                 console.log(res);
