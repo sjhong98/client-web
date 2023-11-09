@@ -7,20 +7,23 @@ import kakaoLogin from '../../assets/images/kakao-login.png';
 
 function QrCard() {
     const navigate = useNavigate();
+    const banners = [{title: 'QR코드 스캔', url: './qr-code-scan'}, {title: '환자 진료기록', url: './patient-list'}, {title: '의사 인증', url: './doctor-auth'}]
+
     return (
-        <div className='qr-card pointer'
-            onClick={() => {
-                navigate("/qr-code");
-            }}>
-            <div className='upper-card'>
-                <p>DID QR 코드</p>
-            </div>
-            <div className='qr-card-content'>
-                <p className='qr-card-title'>이름</p>
-                <p className='qr-card-text'>{sessionStorage.getItem("name")}</p>
-                <p className='qr-card-title'>생년월일</p>
-                <p className='qr-card-text'>{sessionStorage.getItem("birthday")}</p>
-            </div>
+        <div className='main-main'>
+            { banners.map((item, index) => {
+                return (
+                    <div 
+                        key={index} 
+                        className='main-banners'
+                        onClick={() => navigate(`${item.url}`)}
+                    >
+                        <p>{item.title}</p>
+                    </div>
+                )
+            })
+
+            }
 
         </div>
     )
