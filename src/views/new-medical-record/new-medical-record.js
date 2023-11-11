@@ -1,13 +1,15 @@
-import React, { useState, useEffect} from 'react';
+import axios from "axios";
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
-import axios from "axios";
+import React, { useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import LinearProgress from '@mui/material/LinearProgress';
-import Box from '@mui/material/Box';
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from 'react-redux';
+import "react-datepicker/dist/react-datepicker.css";
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 export default function NewMedicalRecord() {
     const [hospital, setHospital] = useState("");
@@ -18,13 +20,8 @@ export default function NewMedicalRecord() {
     const [pastMedicalHistory, setPastMedicalHistory] = useState("");
     const [medications, setMedications] = useState("");
     const [allergies, setAllergies] = useState("");
-    const [physicalExamination, setPhysicalExamination] = useState("");
-    const [laboratoryResults, setLaboratoryResults] = useState("");
-    const [radiologicalFindings, setRadiologicalFindings] = useState("");
     const [diagnosis, setDiagnosis] = useState("");
     const [treatment, setTreatment] = useState("");
-    const [medicationPrescribed, setMedicationPrescribed] = useState("");
-    const [followUp, setFollowUp] = useState("");
     const [additionalComments, setAdditionalComments] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -60,23 +57,23 @@ export default function NewMedicalRecord() {
     }, [dateOfVisit]);
 
     const handleClick = async () => {
-        const recordData = {
-            hospital: hospital,
-            doctor: doctor,
-            dateOfVisit: date,
-            historyOfPresentIllness: historyOfPresentIllness,
-            pastMedicalHistory: pastMedicalHistory,
-            medications: medications,
-            allergies: allergies,
-            diagnosis: diagnosis,
-            treatment: treatment,
-            additionalComments: additionalComments,
-        }
-        setIsLoading(true);
 
         const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
-        await axios.post(`https://${serverIP}:5001/user/new-record`, {recordData, doctorDid, patientJwt})
+        await axios.post(`https://${serverIP}:5001/user/new-record`, {
+                doctorDID: doctorDid,
+                patientDID: patientJwt,
+                hospital: hospital,
+                dn: doctor,
+                dv: date,
+                hi: historyOfPresentIllness,
+                ph: pastMedicalHistory,
+                me: medications,
+                al: allergies,
+                di: diagnosis,
+                tr: treatment,
+                ac: additionalComments,
+            })
             .then(res => {
                 setIsLoading(false);
                 console.log(res);
@@ -135,12 +132,19 @@ export default function NewMedicalRecord() {
                         <div className='desc-container-1'>
                             <p className='desc'>진료 병원</p>
                         </div>
-                        <input 
-                            className='input-1' 
-                            value={hospital} 
-                                onChange={(e) => 
-                                    setHospital(e.target.value)} 
-                            />
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={hospital}
+                            sx={{marginLeft:5, width: 310, height: 23}}
+                            onChange={(e) => {setHospital(e.target.value)}}
+                        >
+                            <MenuItem value={"서울병원"}>서울병원</MenuItem>
+                            <MenuItem value={"인천병원"}>인천병원</MenuItem>
+                            <MenuItem value={"경기병원"}>경기병원</MenuItem>
+                            <MenuItem value={"충남병원"}>충남병원</MenuItem>
+                            <MenuItem value={"부산병원"}>부산병원</MenuItem>
+                        </Select>
                     </div>
     
                     {/* 담당 의사명 */}

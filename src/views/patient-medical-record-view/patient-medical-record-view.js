@@ -74,31 +74,6 @@ export default function PatientMedicalRecordView() {
 
                         <hr />
 
-                        <p className='input-title' style={{marginBottom:'3vh', marginTop:'5vh'}}>검사 결과</p>
-
-                        <div className='input-field row'>
-                            <div className='desc-container-2'>
-                                <p className='desc'>신체 검사 결과</p>
-                            </div>
-                            <p>{data.physicalExamination}</p>
-                        </div>
-
-                        <div className='input-field row'>
-                            <div className='desc-container-2'>
-                                <p className='desc'>실험실 검사 결과</p>
-                            </div>
-                            <p>{data.laboratoryResults}</p>
-                        </div>
-
-                        <div className='input-field row'>
-                            <div className='desc-container-2'>
-                                <p className='desc'>영상 검사 결과</p>
-                            </div>
-                            <p>{data.radiologicalFindings}</p>
-                        </div>
-
-                        <hr />
-
                         <p className='input-title' style={{marginBottom:'3vh', marginTop:'5vh'}}>처방 내용</p>
 
                         <div className='input-field row'>
@@ -113,13 +88,6 @@ export default function PatientMedicalRecordView() {
                                 <p className='desc'>치료 방법 및 계획</p>
                             </div>
                             <p>{data.treatment}</p>
-                        </div>
-
-                        <div className='input-field row'>
-                            <div className='desc-container-2'>
-                                <p className='desc'>처방된 약물</p>
-                            </div>
-                            <p>{data.medicationPrescribed}</p>
                         </div>
 
                         <hr />
