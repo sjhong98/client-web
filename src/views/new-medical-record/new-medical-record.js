@@ -68,22 +68,11 @@ export default function NewMedicalRecord() {
             pastMedicalHistory: pastMedicalHistory,
             medications: medications,
             allergies: allergies,
-            physicalExamination: physicalExamination,
-            laboratoryResults: laboratoryResults,
-            radiologicalFindings: radiologicalFindings,
             diagnosis: diagnosis,
             treatment: treatment,
-            medicationPrescribed: medicationPrescribed,
-            followUp: followUp,
             additionalComments: additionalComments,
         }
         setIsLoading(true);
-
-        // jwt와 did는 유저 회원가입시 또는 진료내용이 업데이트 될 떄마다, 서버에서 프론트로 던져줄예정
-        // 이제 그걸 모바일에서 홀드하고 있어야함 // 그래서 현재는 임시로 지정해줄것임
-
-        // 의사 jwt -> local에서.
-        // 환자 jwt -> qr 코드에서.
 
         const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
@@ -219,44 +208,6 @@ export default function NewMedicalRecord() {
                             />
                     </div>
     
-                    {/* 신체검사 결과 */}
-                    <div className='input-field row'>
-                        <div className='desc-container-1'>
-                            <p className='desc'>신체검사 결과</p>
-                        </div>
-                        <input className='input-1' 
-                            value={physicalExamination} 
-                            onChange={(e) => 
-                                setPhysicalExamination(e.target.value)} 
-                            />
-                    </div>
-    
-                    {/* 실험실 결과 */}
-                    <div className='input-field row'>
-                        <div className='desc-container-1'>
-                            <p className='desc'>실험실 결과</p>
-                        </div>
-                        <input 
-                            className='input-1' 
-                            value={laboratoryResults} 
-                            onChange={(e) => 
-                                setLaboratoryResults(e.target.value)} 
-                            />
-                    </div>
-    
-                    {/* 방사선 판독 소견 */}
-                    <div className='input-field row'>
-                        <div className='desc-container-1'>
-                            <p className='desc'>방사선 판독 소견</p>
-                        </div>
-                        <input 
-                            className='input-1' 
-                            value={radiologicalFindings} 
-                            onChange={(e) => 
-                                setRadiologicalFindings(e.target.value)} 
-                            />
-                    </div>
-    
                     {/* 진단 */}
                     <div className='input-field row'>
                         <div className='desc-container-1'>
@@ -280,32 +231,6 @@ export default function NewMedicalRecord() {
                             value={treatment} 
                             onChange={(e) => 
                                 setTreatment(e.target.value)} 
-                            />
-                    </div>
-    
-                    {/* 처방된 약물 */}
-                    <div className='input-field row'>
-                        <div className='desc-container-1'>
-                            <p className='desc'>처방된 약물</p>
-                        </div>
-                        <input 
-                            className='input-1' 
-                            value={medicationPrescribed} 
-                            onChange={(e) => 
-                                setMedicationPrescribed(e.target.value)} 
-                            />
-                    </div>
-    
-                    {/* 후속 조치 */}
-                    <div className='input-field row'>
-                        <div className='desc-container-1'>
-                            <p className='desc'>후속 조치</p>
-                        </div>
-                        <input 
-                            className='input-1' 
-                            value={followUp} 
-                            onChange={(e) => 
-                                setFollowUp(e.target.value)} 
                             />
                     </div>
     
