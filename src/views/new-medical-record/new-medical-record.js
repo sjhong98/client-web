@@ -28,6 +28,7 @@ export default function NewMedicalRecord() {
     const [doctorDid, setDoctorDid] = useState("");
     // eslint-disable-next-line
     const [name, setName] = useState(useSelector(state => state.patientName));
+    // eslint-disable-next-line
     const [patientJwt, setPatientJwt] = useState(useSelector(state => state.patientJwt));
 
     useEffect(() => {  
@@ -50,6 +51,7 @@ export default function NewMedicalRecord() {
             case "Oct": month="10"; break;
             case "Nov": month="11"; break;
             case "Dec": month="12"; break;
+            default : break;
         }
         let _date = temp[3]+"/"+month+"/"+temp[2];
         setDate(_date);

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Header() {
     const navigate = useNavigate();
     const [menu, setMenu] = useState([]);
+    // eslint-disable-next-line
     const isDoctor = sessionStorage.getItem("isDoctor");
     // const isDoctor = true;  // test용
 

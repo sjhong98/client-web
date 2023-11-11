@@ -1,6 +1,6 @@
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import io from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { setPatientJwt, setPatientName } from '../../redux/actions.js';

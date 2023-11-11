@@ -25,7 +25,7 @@ export default function PatientMedicalRecords() {
         else setIsDiagnosis(false);
 
         console.log(localStorage.getItem('did'));
-
+    // eslint-disable-next-line
     }, [])
 
 
@@ -45,6 +45,7 @@ export default function PatientMedicalRecords() {
         else {
             // jwt로 VC 받기
         }
+        // eslint-disable-next-line
     }, [patientDid, serverIP]);
 
     const handleMouseOver = (index => {
