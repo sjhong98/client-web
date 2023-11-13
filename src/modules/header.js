@@ -25,9 +25,9 @@ export default function Header() {
         <div className='header'>
                 <p className='header-title pointer' onClick={()=>{navigate('/')}}>DMRS</p>
                 <div className='header-menu'>
-                    { menu.map((pages) => {
+                    { menu.map((pages, index) => {
                         return (
-                            <div className='header-menu-buttons pointer row-center'>
+                            <div key={index} className='header-menu-buttons pointer row-center'>
                                 <p className='header-menu-font' 
                                     onClick={() => {
                                         if(login)

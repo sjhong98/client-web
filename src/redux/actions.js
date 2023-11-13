@@ -53,3 +53,10 @@ export const setPatientJwt = (item) => {
         payload: item,
     }
 }
+
+export const setJwtObj = (item) => {
+    return {
+        type: 'SET_JWT_OBJ',
+        payload: item,
+    }
+}

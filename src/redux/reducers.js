@@ -7,7 +7,7 @@ const initialState = {
     patientName: "",
     patientRecord: {},
     patientJwt: "",
-
+    jwtObj: []
 }
 
 const dataReducer = (state = initialState, action) => {
@@ -59,6 +59,12 @@ const dataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 patientRecord: action.payload,
+            }
+
+        case 'SET_JWT_OBJ' :
+            return {
+                ...state,
+                jwtObj: action.payload,
             }
         
         default :
