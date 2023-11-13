@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
-import { useEffect } from 'react';
-import io from 'socket.io-client';
+// import { useEffect } from 'react';
+// import io from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { setJwtObj, setPatientJwt, setPatientName } from '../../redux/actions.js';
 import { useNavigate } from 'react-router-dom';
@@ -49,8 +49,15 @@ export default function QrCodeScan() {
             console.log(res);
             dispatch(setJwtObj(res.data.medicalRecords));
         })
+
+        axios.post('http://api.dmrs.space:5003/qr/link', {jwt: data.jwt})
+        .then(res => {
+            console.log(res);
+        })
         
         navigate('/patient-medical-records');
+
+        // 협회DB에 자신의 진료환자 목록에 환자 did 추가해야함
     }
 
     return(
