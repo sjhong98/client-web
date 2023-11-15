@@ -48,7 +48,6 @@ export default function Auth() {
                         dispatch(setEmail(res.data.dbData.email));
                         sessionStorage.setItem("login", true);
                         // sessionStorage.setItem("isDoctor", res.data.dbData.isDoctor);
-                        sessionStorage.setItem("login", true);
                         sessionStorage.setItem("name", res.data.dbData.name);
                         sessionStorage.setItem("birthday", res.data.dbData.birthday);
                         localStorage.setItem("did", res.data.dbData.did);

@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import "./main.css";
@@ -31,11 +31,19 @@ function QrCard() {
 
 export default function Main() {
     const navigate = useNavigate();
-    const login = sessionStorage.getItem("login");
+    const [login, setLogin] = useState(sessionStorage.getItem("login"));
 
     useEffect(() => {
         sessionStorage.setItem("isDoctor", true);
     }, [])
+
+    const handleTest = () => {
+        sessionStorage.setItem("login", true);
+        setLogin(true);
+        sessionStorage.setItem("name", "admin");
+        sessionStorage.setItem("birthday", "231115");
+        sessionStorage.setItem({"did":"did:ethr:goerli:0x19E95F46a9bB598A497383d9cc838C21A3788D7C","address":"0x19E95F46a9bB598A497383d9cc838C21A3788D7C"});
+    }
     
     return(
         <div className='root'>
@@ -50,7 +58,9 @@ export default function Main() {
                         <img className='kakao-login pointer' 
                             src={kakaoLogin} 
                             onClick={()=>{navigate("/login")}}
-                            alt={'...'} />
+                            alt={'...'} 
+                        />
+                        <button onClick={handleTest}>TEST</button>
                     </div>
                 }
             </div>
