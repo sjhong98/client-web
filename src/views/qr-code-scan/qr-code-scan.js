@@ -25,9 +25,10 @@ export default function QrCodeScan() {
             dispatch(setJwtObj(res.data.medicalRecords));
         })
 
-        axios.get('https://api.dmrs.space:5003/temp/tkj1btbg3c')
+        axios.get('https://api.dmrs.space:5003/temp/yx82580ysw')
         .then(res => {
-            console.log("get qr data from server : ", res);
+            // console.log("get qr data from server : ", res);
+            // 협회DB에 자신의 진료환자 목록에 환자 did 추가해야함
         })
         .catch(err => {
             console.log(err);
@@ -35,7 +36,7 @@ export default function QrCodeScan() {
         
         navigate('/patient-medical-records');
 
-        // 협회DB에 자신의 진료환자 목록에 환자 did 추가해야함
+        
     }
 
     return(
