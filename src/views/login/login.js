@@ -5,8 +5,8 @@ export default function Login() {
 
     const Rest_api_key = process.env.REACT_APP_KAKAO_LOGIN; //REST API KEY
     const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
-    // const redirect_uri = `https://dmrs-b910d.web.app/login/auth` //Redirect URI
-    const redirect_uri = `http://localhost:3000/login/auth`
+    const redirect_uri = `https://dmrs-b910d.web.app/login/auth` //Redirect URI
+    // const redirect_uri = `http://localhost:3000/login/auth`
 
     console.log("here", Rest_api_key);
     console.log(serverIP)
