@@ -37,20 +37,20 @@ export default function Auth() {
                     if(!res.data.dbData){ // 신규가입일때
                         console.log("신규가입: ", res.data.userInfo);
                         dispatch(setEmail(res.data.userInfo.email));
-                        sessionStorage.setItem("isDoctor", res.data.userInfo.isDoctor); // 확인필요
-                        sessionStorage.setItem("login", true);
-                        sessionStorage.setItem("name", res.data.userInfo.profile.nickname);
-                        sessionStorage.setItem("birthday", res.data.userInfo.birthday);
+                        sessionStorage.setItem("dmrs-isDoctor", res.data.userInfo.isDoctor); // 확인필요
+                        sessionStorage.setItem("dmrs-login", true);
+                        sessionStorage.setItem("dmrs-name", res.data.userInfo.profile.nickname);
+                        sessionStorage.setItem("dmrs-birthday", res.data.userInfo.birthday);
                         navigate('/signup');
                         
                     } else {              // 기존회원일때
                         console.log("기존회원: ", res.data.dbData);
                         dispatch(setEmail(res.data.dbData.email));
-                        sessionStorage.setItem("login", true);
+                        sessionStorage.setItem("dmrs-login", true);
                         // sessionStorage.setItem("isDoctor", res.data.dbData.isDoctor);
-                        sessionStorage.setItem("name", res.data.dbData.name);
-                        sessionStorage.setItem("birthday", res.data.dbData.birthday);
-                        localStorage.setItem("did", res.data.dbData.did);
+                        sessionStorage.setItem("dmrs-name", res.data.dbData.name);
+                        sessionStorage.setItem("dmrs-birthday", res.data.dbData.birthday);
+                        localStorage.setItem("dmrs-did", res.data.dbData.did);
                         navigate('/');
                     }
                 })

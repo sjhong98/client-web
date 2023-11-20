@@ -23,7 +23,7 @@ export default function Records() {
     const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
     async function getDb() {
-        const _records = await axios.post(`https://${serverIP}:5001/user/get-my-record`, 
+        const _records = await axios.post(`https://${serverIP}:5001/user/record/vc`, 
             { vcJwt: localStorage.getItem("jwt") }
         )
         setRecords(_records.data);
