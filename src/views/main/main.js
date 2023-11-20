@@ -31,7 +31,7 @@ function QrCard() {
 
 export default function Main() {
     const navigate = useNavigate();
-    const [login, setLogin] = useState(sessionStorage.getItem("login"));
+    const [login, setLogin] = useState(sessionStorage.getItem("dmrs-login"));
 
     useEffect(() => {
         sessionStorage.setItem("dmrs-isDoctor", true);
@@ -42,7 +42,9 @@ export default function Main() {
         setLogin(true);
         sessionStorage.setItem("dmrs-name", "admin");
         sessionStorage.setItem("dmrs-birthday", "231115");
-        sessionStorage.setItem("dmrs-did", {"did":"did:ethr:goerli:0x19E95F46a9bB598A497383d9cc838C21A3788D7C","address":"0x19E95F46a9bB598A497383d9cc838C21A3788D7C"});
+        // localStorage.setItem("dmrs-did", {"did":"did:ethr:goerli:0x19E95F46a9bB598A497383d9cc838C21A3788D7C","address":"0x19E95F46a9bB598A497383d9cc838C21A3788D7C"});
+        localStorage.setItem("dmrs-did", "did:ethr:goerli:0x19E95F46a9bB598A497383d9cc838C21A3788D7C");
+        localStorage.setItem("dmrs-address", "0x19E95F46a9bB598A497383d9cc838C21A3788D7C");
     }
     
     return(

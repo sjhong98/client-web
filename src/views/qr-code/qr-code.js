@@ -11,7 +11,7 @@ export default function QrCode() {
     const [vcJwt, setVcJwt] = useState("");
     
     useEffect(() => {
-        setVcJwt(localStorage.getItem("jwt"))
+        setVcJwt(localStorage.getItem("dmrs-jwt"))
         setTimeout(() => {
             navigate("/");
         }, 15000);

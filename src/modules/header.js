@@ -5,7 +5,7 @@ export default function Header() {
     const navigate = useNavigate();
     const [menu, setMenu] = useState([]);
     // eslint-disable-next-line
-    const isDoctor = sessionStorage.getItem("isDoctor");
+    const isDoctor = sessionStorage.getItem("dmrs-isDoctor");
     // const isDoctor = true;  // test용
 
     useEffect(() => {
@@ -18,8 +18,8 @@ export default function Header() {
     }, []);
 
     
-    const login = sessionStorage.getItem('login');
-    const name = sessionStorage.getItem("name");
+    const login = sessionStorage.getItem('dmrs-login');
+    const name = sessionStorage.getItem("dmrs-name");
 
     return (
         <div className='header'>

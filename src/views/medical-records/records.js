@@ -24,7 +24,7 @@ export default function Records() {
 
     async function getDb() {
         const _records = await axios.post(`https://${serverIP}:5001/user/record/vc`, 
-            { vcJwt: localStorage.getItem("jwt") }
+            { vcJwt: localStorage.getItem("dmrs-jwt") }
         )
         setRecords(_records.data);
         console.log("records : ", records, records.length);
@@ -33,7 +33,7 @@ export default function Records() {
     }
 
     useEffect(() => {
-        if(!sessionStorage.getItem("login"))
+        if(!sessionStorage.getItem("dmrs-login"))
             navigate("/login");
         getDb();
         // eslint-disable-next-line

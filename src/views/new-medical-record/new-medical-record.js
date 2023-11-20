@@ -32,7 +32,7 @@ export default function NewMedicalRecord() {
     const [patientJwt, setPatientJwt] = useState(useSelector(state => state.patientJwt));
 
     useEffect(() => {  
-        setDoctorDid(localStorage.getItem("did"));
+        setDoctorDid(localStorage.getItem("dmrs-did"));
     }, []);
 
     useEffect(() => {

@@ -24,7 +24,7 @@ export default function PatientMedicalRecords() {
         if(patientJwt) setIsDiagnosis(true);
         else setIsDiagnosis(false);
 
-        console.log(localStorage.getItem('did'));
+        console.log(localStorage.getItem('dmrs-did'));
     // eslint-disable-next-line
     }, [])
 
@@ -32,7 +32,7 @@ export default function PatientMedicalRecords() {
     useEffect(() => {
         if(!isDiagnosis) {
             axios.post(`https://${serverIP}:5001/doctor/get-all-patient-records`, 
-            {doctorJwt: localStorage.getItem("jwt"), patientDid: localStorage.getItem('did')}
+            {doctorJwt: localStorage.getItem("dmrs-jwt"), patientDid: localStorage.getItem('dmrs-did')}
             )
             .then((res) => {
                 console.log(res);

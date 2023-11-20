@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Header from '../../modules/header.js';
@@ -6,7 +7,6 @@ import './list.css';
 import InputField from '../../modules/inputField.js';
 import SearchButton from './searchButton.js';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 import { setPatientDid, setPatientName } from '../../redux/actions';
 
 export default function PatientList() {
@@ -15,7 +15,10 @@ export default function PatientList() {
     const [patientList, setPatientList] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [jwt, setJwt] = useState("");
+    const doctorDid = {
+        did: localStorage.getItem("dmrs-did"),
+        address: localStorage.getItem("dmrs-address"),
+    }
 
     // const jwt = process.env.REACT_APP_JWT;
     const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
@@ -29,35 +32,25 @@ export default function PatientList() {
     })
 
     useEffect(() => {
-        if (!sessionStorage.getItem("login")) navigate("/login");
-
-        const jwtFromStorage = localStorage.getItem("jwt");
-        if (jwtFromStorage) {
-            setJwt(jwtFromStorage);
-            console.log("test:", jwtFromStorage);
-        }
+        if (!sessionStorage.getItem("dmrs-login")) navigate("/login");
+        
     }, [navigate]);
 
     useEffect(() => {
-      if (jwt) {
-
-        console.log("doctor jwt : ", jwt);
-        if(jwt != null)
-        {
-            axios.post(`https://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
-                { doctorJwt: jwt }
-                )   
-                .then((res) => {
-                    console.log(res);
-                    setPatientList(res.data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-        }
-     } 
-    }, [jwt, navigate, serverIP]);
-
+        console.log(doctorDid);
+        axios.post(`https://api.dmrs.space:5001/user/issue/vc`,   // 환자 목록 가져오기
+            { 
+                did: doctorDid,
+                hospital: "서울병원",
+            })   
+            .then((res) => {
+                console.log("===== 환자 정보 =====", res);
+                setPatientList(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [serverIP, doctorDid]);
 
     return(
         <div className='root'>
