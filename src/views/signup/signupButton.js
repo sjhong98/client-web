@@ -28,9 +28,9 @@ export default function SignUpButton(props) {
             axios.post(`http://${serverIP}:5001/user/signup`, userInfo)
               .then(res => {
                 console.log(res);
-                localStorage.setItem("did", res.data.did);
-                localStorage.setItem("jwt", res.data.jwt);   // jwt 로컬스토리지에 저장
-                sessionStorage.setItem("login", true);
+                localStorage.setItem("dmrs-did", res.data.did);
+                localStorage.setItem("dmrs-jwt", res.data.jwt);   // jwt 로컬스토리지에 저장
+                sessionStorage.setItem("dmrs-login", true);
                 props.setIsLoading(false);
                 navigate('/');
               })

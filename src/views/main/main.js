@@ -34,15 +34,15 @@ export default function Main() {
     const [login, setLogin] = useState(sessionStorage.getItem("login"));
 
     useEffect(() => {
-        sessionStorage.setItem("isDoctor", true);
+        sessionStorage.setItem("dmrs-isDoctor", true);
     }, [])
 
     const handleTest = () => {
-        sessionStorage.setItem("login", true);
+        sessionStorage.setItem("dmrs-login", true);
         setLogin(true);
-        sessionStorage.setItem("name", "admin");
-        sessionStorage.setItem("birthday", "231115");
-        sessionStorage.setItem("did", {"did":"did:ethr:goerli:0x19E95F46a9bB598A497383d9cc838C21A3788D7C","address":"0x19E95F46a9bB598A497383d9cc838C21A3788D7C"});
+        sessionStorage.setItem("dmrs-name", "admin");
+        sessionStorage.setItem("dmrs-birthday", "231115");
+        sessionStorage.setItem("dmrs-did", {"did":"did:ethr:goerli:0x19E95F46a9bB598A497383d9cc838C21A3788D7C","address":"0x19E95F46a9bB598A497383d9cc838C21A3788D7C"});
     }
     
     return(

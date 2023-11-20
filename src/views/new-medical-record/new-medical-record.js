@@ -79,7 +79,7 @@ export default function NewMedicalRecord() {
             .then(res => {
                 setIsLoading(false);
                 console.log(res);
-                // localStorage.setItem("jwt", res.data.updatedVcJwt);  // -> 환자 로컬에 저장되어야함.
+                // localStorage.setItem("dmrs-jwt", res.data.updatedVcJwt);  // -> 환자 로컬에 저장되어야함.
                 navigate(`/patient-medical-records?patient=${name}`);
             }).catch(err => console.log(err))
     }
