@@ -19,7 +19,7 @@ export default function QrCodeScan() {
 
         console.log("jwt: ", data.jwt);
 
-        axios.post('https://api.dmrs.space:5001/user/get-my-record', {vcJwt: data.jwt})
+        axios.post('https://api.dmrs.space:5001/user/record/vc', {vcJwt: data.jwt})
         .then(res => {
             console.log(res);
             dispatch(setJwtObj(res.data.medicalRecords));
