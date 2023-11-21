@@ -15,10 +15,11 @@ export default function PatientList() {
     const [patientList, setPatientList] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const doctorDid = {
-        did: localStorage.getItem("dmrs-did"),
-        address: localStorage.getItem("dmrs-address"),
-    }
+    // const doctorDid = {
+    //     did: localStorage.getItem("dmrs-did"),
+    //     address: localStorage.getItem("dmrs-address"),
+    // }
+    const doctorDid = localStorage.getItem("dmrs-did");
 
     // const jwt = process.env.REACT_APP_JWT;
     const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
@@ -33,15 +34,13 @@ export default function PatientList() {
 
     useEffect(() => {
         if (!sessionStorage.getItem("dmrs-login")) navigate("/login");
-        
     }, [navigate]);
 
     useEffect(() => {
         console.log(doctorDid);
-        axios.post(`https://api.dmrs.space:5001/user/issue/vc`,   // 환자 목록 가져오기
+        axios.post(`https://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
             { 
-                did: doctorDid,
-                hospital: "서울병원",
+                doctorDid: doctorDid
             })   
             .then((res) => {
                 console.log("===== 환자 정보 =====", res);
