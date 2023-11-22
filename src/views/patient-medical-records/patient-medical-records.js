@@ -32,7 +32,9 @@ export default function PatientMedicalRecords() {
     useEffect(() => {
         if(!isDiagnosis) {
             axios.post(`https://${serverIP}:5001/doctor/get-all-patient-records`, 
-            {doctorJwt: localStorage.getItem("dmrs-jwt"), patientDid: localStorage.getItem('dmrs-did')}
+            {
+                doctorJwt: localStorage.getItem("dmrs-jwt"), 
+                patientDid: localStorage.getItem('dmrs-did')}
             )
             .then((res) => {
                 console.log(res);
