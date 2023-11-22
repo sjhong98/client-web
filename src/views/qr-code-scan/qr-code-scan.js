@@ -42,9 +42,7 @@ export default function QrCodeScan() {
             console.log(err);
         })
         
-        navigate('/patient-medical-records');
-
-        
+        navigate('/patient-medical-records');        
     }
 
     const handleJwtInput = () => {  
@@ -107,3 +105,4 @@ export default function QrCodeScan() {
         </div>
     )
 }
+

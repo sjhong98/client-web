@@ -30,6 +30,7 @@ export default function NewMedicalRecord() {
     const [name, setName] = useState(useSelector(state => state.patientName));
     // eslint-disable-next-line
     const [patientJwt, setPatientJwt] = useState(useSelector(state => state.patientJwt));
+    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {  
         setDoctorDid(localStorage.getItem("dmrs-did"));
@@ -59,9 +60,8 @@ export default function NewMedicalRecord() {
     }, [dateOfVisit]);
 
     const handleClick = async () => {
-
+        setClicked(true);
         const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
-
         const medicalRecord = {
             hospital: hospital,
             dn: doctor,
@@ -72,20 +72,21 @@ export default function NewMedicalRecord() {
             al: allergies,
             di: diagnosis,
             tr: treatment,
-            ac: additionalComments
+            ac: additionalComments,
         }
+        console.log("doctor did (at new-patient-record) : ", doctorDid);
 
         await axios.post(`https://${serverIP}:5001/user/new-record`, {
-                doctorDID: doctorDid,
-                patientDID: patientJwt,
-                medicalRecord,
-            })
-            .then(res => {
-                setIsLoading(false);
-                console.log(res);
-                // localStorage.setItem("dmrs-jwt", res.data.updatedVcJwt);  // -> 환자 로컬에 저장되어야함.
-                navigate(`/patient-medical-records?patient=${name}`);
-            }).catch(err => console.log(err))
+            doctorDID: doctorDid,
+            patientDID: patientJwt,
+            medicalRecord,
+        })
+        .then(res => {
+            setIsLoading(false);
+            console.log(res);
+            // localStorage.setItem("dmrs-jwt", res.data.updatedVcJwt);  // -> 환자 로컬에 저장되어야함.
+            navigate(`/patient-medical-records?patient=${name}`);
+        }).catch(err => console.log(err))
     }
 
     return (
@@ -258,10 +259,17 @@ export default function NewMedicalRecord() {
                     </div>
 
                     <div className='row-center'>
-                        <button className='submit-button' 
-                                onClick={handleClick}>
-                            제출
-                        </button>
+                        { clicked ?
+                            <p>제출 중...</p>
+                            :
+                            <button 
+                                className='submit-button' 
+                                onClick={handleClick}
+                            >
+                                제출
+                            </button>
+                        }
+                        
                     </div>
                 </div>
             </div>
