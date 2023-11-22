@@ -62,19 +62,23 @@ export default function NewMedicalRecord() {
 
         const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
 
+        const medicalRecord = {
+            hospital: hospital,
+            dn: doctor,
+            dv: date,
+            hi: historyOfPresentIllness,
+            ph: pastMedicalHistory,
+            me: medications,
+            al: allergies,
+            di: diagnosis,
+            tr: treatment,
+            ac: additionalComments
+        }
+
         await axios.post(`https://${serverIP}:5001/user/new-record`, {
                 doctorDID: doctorDid,
                 patientDID: patientJwt,
-                hospital: hospital,
-                dn: doctor,
-                dv: date,
-                hi: historyOfPresentIllness,
-                ph: pastMedicalHistory,
-                me: medications,
-                al: allergies,
-                di: diagnosis,
-                tr: treatment,
-                ac: additionalComments,
+                medicalRecord,
             })
             .then(res => {
                 setIsLoading(false);
