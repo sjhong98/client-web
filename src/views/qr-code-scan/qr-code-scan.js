@@ -12,9 +12,7 @@ export default function QrCodeScan() {
     const [patientJwt, _setPatientJwt] = useState("");
     const [patientJwt2, _setPatientJwt2] = useState("");
     const [vpJwt, setVpJwt] = useState("");
-    const [vpJWt2, setVpJwt2] = useState("");
     const [link, setLink] = useState("");
-    const [link2, setLink2] = useState("");
     const [msg, setMsg] = useState("");
     const did = JSON.parse(localStorage.getItem("dmrs-did"));
     const didAddress = did.address;
@@ -37,12 +35,10 @@ export default function QrCodeScan() {
         .then(res => {
             setMsg("링크 생성 중...");
             console.log("qr로부터 받아온 link : ", res.data.link);
-            setLink2(res.data.link);
             
             axios.get(`${res.data.link}`)
             .then(res => {
                 console.log("link로부터 받아온 vpJwt : ", res.data.payload)
-                setVpJwt2(res.data.payload);
                 
                 axios.post('https://api.dmrs.space:5001/user/record/vp', 
                 {
@@ -54,11 +50,9 @@ export default function QrCodeScan() {
                     setMsg("링크가 생성되었습니다. 환자기록 가져오기 버튼을 클릭해주세요");
                 })
                 .catch(err => {
-                    setLink2("/record/vp ERROR");
                     console.log(err);
                 })
             })
-            setLink2(res.data.link);
             
         })
         .catch(err => {
