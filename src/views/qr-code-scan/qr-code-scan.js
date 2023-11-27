@@ -15,36 +15,6 @@ export default function QrCodeScan() {
     const [link, setLink] = useState("");
     const did = localStorage.getItem("dmrs-did");
 
-    const handleTest = () => {
-        const data = testJwt;
-
-        dispatch(setPatientJwt(data.jwt));
-        dispatch(setPatientName(data.name));
-
-        console.log("jwt: ", data.jwt);
-
-        axios.post('https://api.dmrs.space:5001/user/record/vp', 
-        {
-            vcJwt: data.jwt,
-            did: did
-        })
-        .then(res => {
-            console.log(res);
-            dispatch(setJwtObj(res.data.medicalRecords));
-        })
-
-        axios.get('https://api.dmrs.space:5003/temp/yx82580ysw')        // 안됨
-        .then(res => {
-            // console.log("get qr data from server : ", res);
-            // 협회DB에 자신의 진료환자 목록에 환자 did 추가해야함
-        })
-        .catch(err => {
-            console.log(err);
-        })
-        
-        navigate('/patient-medical-records');        
-    }
-
     const handleJwtInput = () => {  
         axios.post('https://api.dmrs.space:5003/link/generate', {
             payload: patientJwt
@@ -92,8 +62,6 @@ export default function QrCodeScan() {
             <div className='body'>
                 <h1>QR 스캔</h1>
                 <p>모바일로 환자의 QR코드를 스캔해주세요.</p>
-                <button onClick={handleTest}>환자JWT 검증</button>
-                <hr />
                 <p>테스트용 JWT 입력 (해당 jwt의 환자 진료기록으로 이동)</p>
                 <input type="text" value={patientJwt} onChange={(e) => _setPatientJwt(e.target.value)} />
                 <button onClick={handleJwtInput}>jwt 입력</button>

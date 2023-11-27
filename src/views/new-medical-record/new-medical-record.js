@@ -78,14 +78,14 @@ export default function NewMedicalRecord() {
 
         await axios.post(`https://${serverIP}:5001/user/new-record`, {
             doctorDID: doctorDid,
-            patientDID: patientJwt,
+            vpJwt: patientJwt,
             medicalRecord,
         })
         .then(res => {
             setIsLoading(false);
-            console.log(res);
+            console.log("===== New Record Saved =====\n", res);
             // localStorage.setItem("dmrs-jwt", res.data.updatedVcJwt);  // -> 환자 로컬에 저장되어야함.
-            navigate(`/patient-medical-records?patient=${name}`);
+            navigate(`/patient-list`);
         }).catch(err => console.log(err))
     }
 

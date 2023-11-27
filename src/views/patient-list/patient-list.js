@@ -39,7 +39,7 @@ export default function PatientList() {
     useEffect(() => {
         console.log(doctorDid);
         axios.post(`https://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
-            { 
+            {
                 doctorDid: doctorDid
             })   
             .then((res) => {
