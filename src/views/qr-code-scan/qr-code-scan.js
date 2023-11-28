@@ -2,7 +2,7 @@ import axios from 'axios';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import { useDispatch } from 'react-redux';
-import { setJwtObj, setPatientJwt, setPatientName } from '../../redux/actions.js';
+import { setJwtObj, setPatientJwt, setPatientName, setPatientInfo, setPatientVc } from '../../redux/actions.js';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -14,6 +14,7 @@ export default function QrCodeScan() {
     const [vpJwt, setVpJwt] = useState("");
     const [link, setLink] = useState("");
     const [msg, setMsg] = useState("");
+
     const did = JSON.parse(localStorage.getItem("dmrs-did"));
     const didAddress = did.address;
 
@@ -21,12 +22,20 @@ export default function QrCodeScan() {
         console.log("didAddress : ", didAddress);
         axios.get(`https://api.dmrs.space:5003/temp/${didAddress}`)
         .then(res => {
+            let temp = [];
             console.log("===== Received VP =====\n", res.data.payload);
+            dispatch(setPatientInfo(res.data.payload.decodedVpContents[0]));
+            for(let i=1; i<res.data.payload.decodedVpContents.length; i++) {
+                temp.push(res.data.payload.decodedVpContents[i]);
+            }
+            dispatch(setPatientVc(temp));
+            navigate('/patient-medical-records');
         })
         .catch(err => {
             console.log("링크 오류", err);
         }) 
     }
+
 
     const handleMobileTest = () => {
         axios.post('https://api.dmrs.space:5003/link/generate', {

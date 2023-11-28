@@ -5,10 +5,9 @@ import './patient-medical-record-view.css';
 import { useSelector } from 'react-redux';
 
 export default function PatientMedicalRecordView() {
-    const name = useSelector(state => state.patientName);
-    console.log(name);
-
+    const patientInfo = useSelector(state => state.patientInfo);
     const data = useSelector(state => state.patientRecord);
+    console.log(data);
 
     return(
         <div className='root'>
@@ -23,7 +22,7 @@ export default function PatientMedicalRecordView() {
                             <div className='desc-container-1'>
                                 <p className='desc'>환자명</p>
                             </div>
-                            <p>{name}</p>
+                            <p>{patientInfo.userInfo.name}</p>
                         </div>
 
                         <div className='input-field row'>
@@ -37,14 +36,14 @@ export default function PatientMedicalRecordView() {
                             <div className='desc-container-1'>
                                 <p className='desc'>담당 의사명</p>
                             </div>
-                            <p>{data.doctorName}</p>
+                            <p>{data.dn}</p>
                         </div>
 
                         <div className='input-field row'>
                             <div className='desc-container-1'>
                                 <p className='desc'>진료일자</p>
                             </div>
-                            <p>{data.dateOfVisit}</p>
+                            <p>{data.dv}</p>
                         </div>
 
                         <hr />
@@ -55,21 +54,21 @@ export default function PatientMedicalRecordView() {
                             <div className='desc-container-2'>
                                 <p className='desc'>진행 이력</p>
                             </div>
-                            <p>{data.historyOfPresentIllness}</p>
+                            <p>{data.hi}</p>
                         </div>
 
                         <div className='input-field row'>
                             <div className='desc-container-2'>
                                 <p className='desc'>복용 약물</p>
                             </div>
-                            <p>{data.medications}</p>
+                            <p>{data.me}</p>
                         </div>
 
                         <div className='input-field row'>
                             <div className='desc-container-2'>
                                 <p className='desc'>알레르기 정보</p>
                             </div>
-                            <p>{data.allergies}</p>
+                            <p>{data.al}</p>
                         </div>
 
                         <hr />
@@ -80,14 +79,14 @@ export default function PatientMedicalRecordView() {
                             <div className='desc-container-2'>
                                 <p className='desc'>진단 결과</p>
                             </div>
-                            <p>{data.diagnosis}</p>
+                            <p>{data.di}</p>
                         </div>
 
                         <div className='input-field row'>
                             <div className='desc-container-2'>
                                 <p className='desc'>치료 방법 및 계획</p>
                             </div>
-                            <p>{data.treatment}</p>
+                            <p>{data.tr}</p>
                         </div>
 
                         <hr />
@@ -96,16 +95,9 @@ export default function PatientMedicalRecordView() {
 
                         <div className='input-field row'>
                             <div className='desc-container-2'>
-                                <p className='desc'>후속 치료 정보</p>
-                            </div>
-                            <p>{data.followUp}</p>
-                        </div>
-
-                        <div className='input-field row'>
-                            <div className='desc-container-2'>
                                 <p className='desc'>코멘트</p>
                             </div>
-                            <p>{data.additionalComments}</p>
+                            <p>{data.ac}</p>
                         </div>
 
                         

@@ -60,3 +60,17 @@ export const setJwtObj = (item) => {
         payload: item,
     }
 }
+
+export const setPatientInfo = (item) => {
+    return {
+        type: 'SET_PATIENT_INFO',
+        payload: item
+    }
+}
+
+export const setPatientVc = (item) => {
+    return {
+        type: 'SET_PATIENT_VC',
+        payload: item
+    }
+}

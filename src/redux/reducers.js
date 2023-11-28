@@ -7,11 +7,25 @@ const initialState = {
     patientName: "",
     patientRecord: {},
     patientJwt: "",
-    jwtObj: []
+    jwtObj: [],
+    patientInfo: {},
+    patientVc: [],
 }
 
 const dataReducer = (state = initialState, action) => {
     switch(action.type) {
+
+        case 'SET_PATIENT_INFO' :
+            return {
+                ...state,
+                patientInfo: action.payload,
+            }
+
+        case 'SET_PATIENT_VC' :
+            return {
+                ...state,
+                patientVc: action.payload,
+            }
 
         case 'SET_PATIENT_JWT' :
             return {
