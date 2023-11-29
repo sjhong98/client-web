@@ -7,7 +7,7 @@ import './list.css';
 import InputField from '../../modules/inputField.js';
 import SearchButton from './searchButton.js';
 import { useDispatch } from 'react-redux';
-import { setPatientDid, setPatientInfo, setPatientName, setPatientVc } from '../../redux/actions';
+import { setPatientInfo, setPatientVc } from '../../redux/actions';
 
 export default function PatientList() {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -91,6 +91,10 @@ export default function PatientList() {
                                 </div>
                             )
                         }
+                        else    
+                            return (
+                                <></>
+                                )
                     }) }
 
                 </div>
