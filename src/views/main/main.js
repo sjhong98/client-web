@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
+import diagnosisImg from '../../assets/images/diagnosis.jpg'
+import qrScanImg from '../../assets/images/qrScan.jpg';
+import authImg from '../../assets/images/docAuth.jpg';
 import "./main.css";
 import { useNavigate } from 'react-router-dom';
 import kakaoLogin from '../../assets/images/kakao-login.png';
 
-function QrCard() {
+function Banners() {
     const navigate = useNavigate();
-    const banners = [{title: 'QR코드 스캔', url: './qr-code-scan'}, {title: '환자 진료기록', url: './patient-list'}, {title: '의사 인증', url: './doctor-auth'}]
+    const [mouseOver, setMouseOver] = useState(-1);
+    const banners = [
+        {title: 'QR 코드 스캔', url: './qr-code-scan', img: qrScanImg}, 
+        {title: '환자 진료기록', url: './patient-list', img: diagnosisImg}, 
+        {title: '의사 인증', url: './doctor-auth', img: authImg}
+    ]
+
+    const handleMouseOver = (index) => {
+        setMouseOver(index);
+    }
+
+    const handleMouseOut = () => {
+        setMouseOver(-1)
+    }
 
     return (
         <div className='main-main'>
@@ -15,10 +31,15 @@ function QrCard() {
                 return (
                     <div 
                         key={index} 
-                        className='main-banners'
+                        className={mouseOver === index ? `main-banners banner-active` : `main-banners banner-inactive`}
+                        onMouseOver={() => handleMouseOver(index)}
+                        onMouseOut={handleMouseOut}
                         onClick={() => navigate(`${item.url}`)}
                     >
-                        <p>{item.title}</p>
+                        <img src={item.img} className='banner-img' alt="..." />
+                        <div className='banner-content'>
+                            <p>{item.title}</p>
+                        </div>
                     </div>
                 )
             })
@@ -53,7 +74,7 @@ export default function Main() {
             <div className='body column-center'>
                 {
                     login ?
-                    <QrCard />
+                    <Banners />
                     :
                     <div className="login-box column-center">
                         <p className="no-margin" style={{fontSize:'50px'}}>소셜로그인</p>
