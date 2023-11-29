@@ -73,8 +73,6 @@ export default function PatientList() {
                                     onMouseOver={() => {handleMouseOver(index)}}
                                     onMouseOut={handleMouseOut} 
                                     onClick={() => {
-                                        // dispatch(setPatientDid(item.did));
-                                        // dispatch(setPatientName(item.name));
                                         dispatch(setPatientInfo(item));
                                         navigate(`/patient-medical-records`);
                                     }} 

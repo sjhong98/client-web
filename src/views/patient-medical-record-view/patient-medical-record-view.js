@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 export default function PatientMedicalRecordView() {
     const patientInfo = useSelector(state => state.patientInfo);
     const data = useSelector(state => state.patientRecord);
-    console.log(data);
 
     return(
         <div className='root'>
@@ -22,7 +21,7 @@ export default function PatientMedicalRecordView() {
                             <div className='desc-container-1'>
                                 <p className='desc'>환자명</p>
                             </div>
-                            <p>{patientInfo.userInfo.name}</p>
+                            <p>{patientInfo.name}</p>
                         </div>
 
                         <div className='input-field row'>

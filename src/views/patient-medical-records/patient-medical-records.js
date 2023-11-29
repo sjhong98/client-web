@@ -36,7 +36,9 @@ export default function PatientMedicalRecords() {
         }
         setShowVc(temp);
 
-        console.log("patient info : " , patientInfo);
+        if(patientVc.length != 0) {
+            setIsDiagnosis(true);
+        } 
 
     // eslint-disable-next-line
     }, [])
