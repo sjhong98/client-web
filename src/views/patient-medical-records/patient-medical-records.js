@@ -36,7 +36,7 @@ export default function PatientMedicalRecords() {
         }
         setShowVc(temp);
 
-        if(patientVc.length != 0) {
+        if(patientVc.length !== 0) {
             setIsDiagnosis(true);
         } 
 
