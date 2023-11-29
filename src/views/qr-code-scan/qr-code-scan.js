@@ -24,7 +24,7 @@ export default function QrCodeScan() {
         .then(res => {
             let temp = [];
             console.log("===== Received VP =====\n", res.data.payload);
-            dispatch(setPatientInfo(res.data.payload.decodedVpContents[0]));
+            dispatch(setPatientInfo(res.data.payload.decodedVpContents[0].userInfo));
             for(let i=1; i<res.data.payload.decodedVpContents.length; i++) {
                 temp.push(res.data.payload.decodedVpContents[i]);
             }

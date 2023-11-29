@@ -7,7 +7,7 @@ import './list.css';
 import InputField from '../../modules/inputField.js';
 import SearchButton from './searchButton.js';
 import { useDispatch } from 'react-redux';
-import { setPatientDid, setPatientName } from '../../redux/actions';
+import { setPatientDid, setPatientInfo, setPatientName, setPatientVc } from '../../redux/actions';
 
 export default function PatientList() {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -15,11 +15,7 @@ export default function PatientList() {
     const [patientList, setPatientList] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const doctorDid = {
-    //     did: localStorage.getItem("dmrs-did"),
-    //     address: localStorage.getItem("dmrs-address"),
-    // }
-    const doctorDid = localStorage.getItem("dmrs-did");
+    const doctorDid = JSON.parse(localStorage.getItem("dmrs-did"));
 
     // const jwt = process.env.REACT_APP_JWT;
     const serverIP = process.env.REACT_APP_SERVER_IP_ADDRESS;
@@ -40,16 +36,19 @@ export default function PatientList() {
         console.log(doctorDid);
         axios.post(`https://${serverIP}:5001/doctor/get-patients-list`,   // 환자 목록 가져오기
             {
-                doctorDid: doctorDid
+                doctorDID: doctorDid
             })   
             .then((res) => {
-                console.log("===== 환자 정보 =====", res);
+                console.log("===== 환자 정보 =====", res.data);
                 setPatientList(res.data);
             })
             .catch((err) => {
                 console.log(err);
             })
-    }, [serverIP, doctorDid]);
+
+        dispatch(setPatientVc([]));
+            // eslint-disable-next-line
+    }, []);
 
     return(
         <div className='root'>
@@ -67,27 +66,31 @@ export default function PatientList() {
                         <p className='records-index-date-pl'>생년월일</p>
                     </div>
                     { patientList.map((item, index) => {
-                        return (
-                            <div className={`records-list pointer ${activeIndex === index ? "records-mouseover" : ""}`} 
-                                key={index}
-                                onMouseOver={ () => {handleMouseOver(index)} }
-                                onMouseOut={handleMouseOut} 
-                                onClick={() => {
-                                    navigate(`/patient-medical-records`);
-                                    dispatch(setPatientDid(item.did));
-                                    dispatch(setPatientName(item.name));
-                                }} >
-                                <div className='records-list-name-pl'>
-                                    <p>{item.name}</p>
+                        if(item != null) {
+                            return (
+                                <div className={`records-list pointer ${activeIndex === index ? "records-mouseover" : ""}`} 
+                                    key={index}
+                                    onMouseOver={() => {handleMouseOver(index)}}
+                                    onMouseOut={handleMouseOut} 
+                                    onClick={() => {
+                                        // dispatch(setPatientDid(item.did));
+                                        // dispatch(setPatientName(item.name));
+                                        dispatch(setPatientInfo(item));
+                                        navigate(`/patient-medical-records`);
+                                    }} 
+                                >
+                                    <div className='records-list-name-pl'>
+                                        <p>{item.name}</p>
+                                    </div>
+                                    <div className='records-list-email-pl'>
+                                        <p>{item.email}</p>
+                                    </div>
+                                    <div className='records-list-date-pl'>
+                                        <p>{item.birthday}</p>
+                                    </div>
                                 </div>
-                                <div className='records-list-email-pl'>
-                                    <p>{item.email}</p>
-                                </div>
-                                <div className='records-list-date-pl'>
-                                    <p>{item.birthday}</p>
-                                </div>
-                            </div>
-                        )
+                            )
+                        }
                     }) }
 
                 </div>

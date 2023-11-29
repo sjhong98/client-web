@@ -36,8 +36,11 @@ export default function PatientMedicalRecords() {
         }
         setShowVc(temp);
 
+        console.log("patient info : " , patientInfo);
+
     // eslint-disable-next-line
     }, [])
+
 
     const handleChangeVc = (e) => {
         let select = e.target.value;
@@ -68,7 +71,7 @@ export default function PatientMedicalRecords() {
                     }
                 </div>
                 <div className='title-box'>
-                    <p style={{fontSize:'30px'}}>{patientInfo.userInfo.name}님의 진료 기록</p>
+                    <p style={{fontSize:'30px'}}>{patientInfo.name}님의 진료 기록</p>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
