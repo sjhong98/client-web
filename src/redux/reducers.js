@@ -10,10 +10,17 @@ const initialState = {
     jwtObj: [],
     patientInfo: {},
     patientVc: [],
+    isDiagnosis: false,
 }
 
 const dataReducer = (state = initialState, action) => {
     switch(action.type) {
+
+        case 'SET_IS_DIAGNOSIS' :
+            return {
+                ...state,
+                isDiagnosis: action.payload,
+            }
 
         case 'SET_PATIENT_INFO' :
             return {

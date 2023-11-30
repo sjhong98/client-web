@@ -7,7 +7,7 @@ import './list.css';
 import InputField from '../../modules/inputField.js';
 import SearchButton from './searchButton.js';
 import { useDispatch } from 'react-redux';
-import { setPatientInfo, setPatientVc } from '../../redux/actions';
+import { setIsDiagnosis, setPatientInfo, setPatientVc, setPatientDid } from '../../redux/actions';
 
 export default function PatientList() {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -74,6 +74,8 @@ export default function PatientList() {
                                     onMouseOut={handleMouseOut} 
                                     onClick={() => {
                                         dispatch(setPatientInfo(item));
+                                        dispatch(setPatientDid(item.did))
+                                        dispatch(setIsDiagnosis(false));
                                         navigate(`/patient-medical-records`);
                                     }} 
                                 >

@@ -2,7 +2,7 @@ import axios from 'axios';
 import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import { useDispatch } from 'react-redux';
-import { setJwtObj, setPatientJwt, setPatientName, setPatientInfo, setPatientVc } from '../../redux/actions.js';
+import { setJwtObj, setPatientJwt, setPatientName, setPatientInfo, setPatientVc, setIsDiagnosis } from '../../redux/actions.js';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -29,6 +29,7 @@ export default function QrCodeScan() {
                 temp.push(res.data.payload.decodedVpContents[i]);
             }
             dispatch(setPatientVc(temp));
+            dispatch(setIsDiagnosis(true));
             navigate('/patient-medical-records');
         })
         .catch(err => {

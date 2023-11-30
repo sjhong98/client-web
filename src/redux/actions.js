@@ -74,3 +74,10 @@ export const setPatientVc = (item) => {
         payload: item
     }
 }
+
+export const setIsDiagnosis = (item) => {
+    return {
+        type: 'SET_IS_DIAGNOSIS',
+        payload: item
+    }
+}
