@@ -27,7 +27,7 @@ export default function NewMedicalRecord() {
     const navigate = useNavigate();
     const [doctorDid, setDoctorDid] = useState("");
     // eslint-disable-next-line
-    const [name, setName] = useState(useSelector(state => state.patientName));
+    const [name, setName] = useState(useSelector(state => state.patientInfo).name);
     // eslint-disable-next-line
     const [patientJwt, setPatientJwt] = useState(useSelector(state => state.patientJwt));
     const [clicked, setClicked] = useState(false);
@@ -74,10 +74,12 @@ export default function NewMedicalRecord() {
             tr: treatment,
             ac: additionalComments,
         }
-        console.log("doctor did (at new-patient-record) : ", doctorDid);
+        console.log("doctor did (at new-patient-record) : ", JSON.parse(doctorDid));
+        console.log("Jwt : ", patientJwt);
+        let doc = JSON.parse(doctorDid);
 
         await axios.post(`https://${serverIP}:5001/user/new-record`, {
-            doctorDID: doctorDid,
+            doctorDID: doc,
             vpJwt: patientJwt,
             medicalRecord,
         })
