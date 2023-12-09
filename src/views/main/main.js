@@ -3,7 +3,7 @@ import Header from '../../modules/header.js';
 import Footer from '../../modules/footer.js';
 import diagnosisImg from '../../assets/images/diagnosis.jpg'
 import qrScanImg from '../../assets/images/qrScan.jpg';
-import authImg from '../../assets/images/docAuth.jpg';
+import authImg from '../../assets/images/docAuth.jpeg';
 import "./main.css";
 import { useNavigate } from 'react-router-dom';
 import kakaoLogin from '../../assets/images/kakao-login.png';
@@ -14,7 +14,7 @@ function Banners() {
     const banners = [
         {title: 'QR 코드 스캔', url: './qr-code-scan', img: qrScanImg}, 
         {title: '환자 진료기록', url: './patient-list', img: diagnosisImg}, 
-        {title: '의사 인증', url: './doctor-auth', img: authImg}
+        {title: '개발 정보', url: './doctor-auth', img: authImg}
     ]
 
     const handleMouseOver = (index) => {
@@ -51,8 +51,16 @@ function Banners() {
 }
 
 export default function Main() {
-    const navigate = useNavigate();
     const [login, setLogin] = useState(sessionStorage.getItem("dmrs-login"));
+
+    const Rest_api_key = process.env.REACT_APP_KAKAO_LOGIN; //REST API KEY
+    const redirect_uri = `https://dmrs-b910d.web.app/login/auth` //Redirect URI
+
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
+
+    const handleLogin = ()=>{
+        window.location.href = kakaoURL
+    }
 
     useEffect(() => {
         sessionStorage.setItem("dmrs-isDoctor", true);
@@ -80,10 +88,10 @@ export default function Main() {
                         <p className="no-margin" style={{fontSize:'50px'}}>소셜로그인</p>
                         <img className='kakao-login pointer' 
                             src={kakaoLogin} 
-                            // onClick={()=>{navigate("/login")}}
-                            onClick={handleTest}
+                            onClick={handleLogin}
                             alt={'...'} 
                         />
+                        <button onClick={handleTest}>TEST</button>
                     </div>
                 }
             </div>
