@@ -32,36 +32,20 @@ export default function DoctorAuth() {
         <div className='root'>
             <Header />
                 <div className='column-center auth-box'>
-                <p style={{fontSize:'30px'}}>의사 명단</p>
+                <p style={{fontSize:'30px'}}>개발 정보</p>
                     <div className='records-box'>
-                        <div className='records-index'>
-                            <p className='records-index-date'>이름</p>
-                            <p className='records-index-hpt'>주민등록번호</p>
-                            {/* <p className='records-index-notes'>진료 내용</p> */}
+                        <div style={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+                            <p>BackEnd --- </p>
+                            <a href='https://github.com/viviviviviid'>viviviviviid</a>
                         </div>
-                        { waitingList.map((item, index) => {
-                            return (
-                                <div className={`records-list pointer`} 
-                                    key={index} >
-                                    <div className='records-list-date'>
-                                        <p>{item.name}</p>
-                                    </div>
-                                    <div className='records-list-hpt'>
-                                        <p>{item.birthday}</p>
-                                    </div>
-                                    <input 
-                                        type="checkbox"
-                                        className='auth-checkbox' 
-                                        onClick={() => {
-                                            console.log(item)   
-                                            axios.post(`https://${serverIP}:5001/doctor/new-doctor`, item)
-                                            .then(res => {
-                                                console.log(res.data) // 의사의 새로운 jwt 
-                                            }).catch(console.log)
-                                        }}/>
-                                </div>
-                            )
-                        }) }
+                        <div style={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+                            <p>FrontEnd --- </p>
+                            <a href='https://github.com/sjhong98'>sjhong98</a>
+                        </div>
+                        <div style={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+                            <a href='https://github.com/sjhong98/DMRS'>Github /</a>
+                            <a href='https://noble-walker-465.notion.site/DMRS-5933966e79ef4b88a899260b1de5a8bf?pvs=4'>Notion</a>
+                        </div>
 
                     </div>
                 </div>
