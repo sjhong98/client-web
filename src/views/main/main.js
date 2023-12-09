@@ -80,10 +80,10 @@ export default function Main() {
                         <p className="no-margin" style={{fontSize:'50px'}}>소셜로그인</p>
                         <img className='kakao-login pointer' 
                             src={kakaoLogin} 
-                            onClick={()=>{navigate("/login")}}
+                            // onClick={()=>{navigate("/login")}}
+                            onClick={handleTest}
                             alt={'...'} 
                         />
-                        <button onClick={handleTest}>TEST</button>
                     </div>
                 }
             </div>
