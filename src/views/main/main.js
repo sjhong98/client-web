@@ -91,7 +91,7 @@ export default function Main() {
                             onClick={handleLogin}
                             alt={'...'} 
                         />
-                        {/* <button onClick={handleTest}>TEST</button> */}
+                        <button onClick={handleTest}>TEST</button>
                     </div>
                 }
             </div>

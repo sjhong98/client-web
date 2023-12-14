@@ -116,22 +116,23 @@ export default function QrCodeScan() {
             <Header />
             <div className='body'>
                 <h1>QR 스캔</h1>
-                {/* <h2>기능 시현</h2>
-                <button onClick={handleJwtInput}>동작</button>
-                <p>QR로부터 받아온 링크 : {link}</p>
-                <p>link로부터 받아온 vpJwt : {vpJwt}</p>
-                {vpJwt==="" ? <></> : getJwtDone ? <button onClick={handleGetRecords}>진료기록 가져오기</button> : <p>이동 중...</p>}
-                <hr style={{marginTop:'100px'}} /> */}
+                
                 <button onClick={handleGetRecords}>환자 진료기록 가져오기</button>
                 {/* <button onClick={handleJwtInput}>환자 진료기록 가져오기</button> */}
                 <p>모바일로 환자의 QR코드를 스캔해주세요.</p>
                 {getJwtDone ? <p>진료 정보 받아오는 중...</p> : <></>}
                 <hr />
-                {/* <p>의사 모바일 테스트</p>
+                <h2>기능 시현</h2>
+                <button onClick={handleJwtInput}>동작</button>
+                <p>QR로부터 받아온 링크 : {link}</p>
+                <p>link로부터 받아온 vpJwt : {vpJwt}</p>
+                {vpJwt==="" ? <></> : getJwtDone ? <button onClick={handleGetRecords}>진료기록 가져오기</button> : <p>이동 중...</p>}
+                <hr style={{marginTop:'100px'}} />
+                <p>의사 모바일 테스트</p>
                 <input type="text" value={patientJwt2} onChange={(e) => _setPatientJwt2(e.target.value)} />
                 <button onClick={handleMobileTest}>jwt 입력</button>
                 <p>{msg}</p>
-                <hr /> */}
+                <hr />
             </div>
             <Footer />
         </div>
